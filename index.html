@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/output.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="hero relative h-[83vh]">
+        <nav class="site-nav" aria-label="Main navigation">
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Open menu">
+                <span></span>
+                <span></span>
+            </button>
+            <a class="nav-brand" href="./index.html">makamusic</a>
+            <ul class="nav-links" id="main-menu">
+                <li><a class="nav-link" href="#home">Home</a></li>
+                <li><a class="nav-link" href="#about">About</a></li>
+                <li><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-slideshow" aria-hidden="true"></div>
+        <div class="header-content flex h-full items-center px-8 py-12">
+            <h1 class="font-after text-6xl hero-title" aria-label="makamusic">
+                <span class="hero-word hero-word-main" id="hero">maka</span><span class="hero-word hero-word-sub music">music</span>
+            </h1>
+            <p class="hero-subtext"><span>OAU's Biggest Artist. Undisputed No.1 in OAU</span></p>
+        </div>
+    </header>
+    <nav class="social-dock" aria-label="Social links">
+        <a href="https://open.spotify.com/artist/5ivo1TPpAcT6dKXdmHCMZ8?si=CxSLpLdjSpuUmzQsE0CO6w" target="_blank" rel="noreferrer" aria-label="MakaMusic on Spotify">
+            <img src="./maka/spotify.png" alt="">
+            <span>makamusic</span>
+        </a>
+        <a href="https://www.instagram.com/makamusic__/?hl=en" target="_blank" rel="noreferrer" aria-label="MakaMusic on Instagram">
+            <img src="./maka/ig.png" alt="">
+            <span>makamusic__</span>
+        </a>
+        <a href="https://www.youtube.com/channel/UCG_r8SpPya5EdcappZd_oNQ" target="_blank" rel="noreferrer" aria-label="MakaMusic on YouTube">
+            <img src="./maka/youtube.png" alt="">
+            <span>MAKAMUSIC_1</span>
+        </a>
+        <a href="https://x.com/makamusic1?s=20" target="_blank" rel="noreferrer" aria-label="MakaMusic on X">
+            <img src="./maka/twitter.png" alt="">
+            <span>makamusic1</span>
+        </a>
+      
+    </nav>
+    <section class="about-section" id="about" aria-labelledby="about-title">
+        <div class="about-copy">
+            <p class="about-kicker">The story behind the sound</p>
+            <h2 id="about-title">ABOUT MAKAMUSIC</h2>
+            <p class="about-quote">"Not here to make noise. Here to make History."</p>
+            <p class="">I'm Adeyemo Gad Ifeoluwa, you know me as MakaMusic. A law student at Obafemi Awolowo University. I fell in love with rap in 2019 and since then I've dropped five singles, including "SCATTER" and "JUBA" and my latest EP: "MAKA SZN"  I was named OAU Street Hip Hop Artiste of the Year in 2024 and OAU Artiste of the Year in 2025. <br>Co-signed by both Asake and Yhemolee, that's not luck, that's work.
+
+Music isn't just a hobby to me, it's my life. I've got one more year of law school left, and then it's music, full-time, no looking back.
+
+Everyone will reckon with me when I become successful. I've been saying that since day one. I'm not here to make noise, here to make history.</p>
+            
+        </div>
+                
+        <div class="about-image-wrap">
+            <img class="about-image" src="./maka/maka-about-img.jpg" alt="MakaMusic performing on stage">
+        </div>
+    </section>
+    <section class="records-section" id="records" aria-labelledby="records-title">
+        <div class="records-heading">
+            <p class="records-kicker">Selected releases</p>
+            <h2 id="records-title">RECORDS</h2>
+            <p>Music made from experience, ambition, and a little bit of trouble.</p>
+        </div>
+        <div class="records-carousel" aria-roledescription="carousel" aria-label="MakaMusic records">
+            <div class="records-viewport">
+                <div class="records-track">
+                    <button class="record-card" type="button" aria-label="Juba record artwork">
+                        <img src="./maka/maka-juba.png" alt="Juba record artwork">
+                    </button>
+                    <button class="record-card is-active" type="button" aria-label="Maka SZN record artwork">
+                        <img src="./maka/makaszn.png" alt="Maka SZN record artwork">
+                    </button>
+                    <button class="record-card" type="button" aria-label="Scatter record artwork">
+                        <img src="./maka/maka-scatter.png" alt="Scatter record artwork">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const siteNav = document.querySelector(".site-nav");
+        const navToggle = document.querySelector(".nav-toggle");
+
+        navToggle.addEventListener("click", () => {
+            const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+            navToggle.setAttribute("aria-expanded", String(!isOpen));
+            navToggle.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+            siteNav.classList.toggle("is-open", !isOpen);
+        });
+
+        const slideNames = [
+            "maka-2.png",
+            "maka-3.png",
+            "maka-4.png",
+            "maka-6.png",
+            "maka-7.png"
+        ];
+
+        const slideshow = document.querySelector(".header-slideshow");
+
+        slideNames.forEach((name, index) => {
+            const slide = document.createElement("img");
+            slide.className = "header-slide";
+            slide.src = `./maka/${encodeURIComponent(name)}`;
+            slide.alt = "";
+                if (index === 0) {
+                    slide.classList.add("is-active");
+                }
+            slideshow.appendChild(slide);
+        });
+
+            let activeSlide = 0;
+            setInterval(() => {
+                const slides = slideshow.querySelectorAll(".header-slide");
+                slides[activeSlide].classList.remove("is-active");
+                activeSlide = (activeSlide + 1) % slides.length;
+                slides[activeSlide].classList.add("is-active");
+            }, 10000);
+
+        const recordsViewport = document.querySelector(".records-viewport");
+        const recordsTrack = document.querySelector(".records-track");
+        const recordCards = [...recordsTrack.querySelectorAll(".record-card")];
+        const activeRecord = 1;
+
+        function centerRecords() {
+            const cardWidth = recordCards[0].offsetWidth;
+            const trackStyle = getComputedStyle(recordsTrack);
+            const gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
+            const offset = recordsViewport.clientWidth / 2 - cardWidth / 2 - activeRecord * (cardWidth + gap);
+
+            recordsTrack.style.transform = `translateX(${offset}px)`;
+        }
+
+        window.addEventListener("resize", centerRecords);
+        centerRecords();
+    </script>
+</body>
+</html>
