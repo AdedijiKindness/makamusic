@@ -45,7 +45,6 @@
             <img src="./maka/twitter.png" alt="">
             <span>makamusic1</span>
         </a>
-      
     </nav>
     <section class="about-section" id="about" aria-labelledby="about-title">
         <div class="about-copy">
@@ -64,28 +63,48 @@ Everyone will reckon with me when I become successful. I've been saying that sin
             <img class="about-image" src="./maka/maka-about-img.jpg" alt="MakaMusic performing on stage">
         </div>
     </section>
-    <section class="records-section" id="records" aria-labelledby="records-title">
-        <div class="records-heading">
-            <p class="records-kicker">Selected releases</p>
-            <h2 id="records-title">RECORDS</h2>
-            <p>Music made from experience, ambition, and a little bit of trouble.</p>
-        </div>
-        <div class="records-carousel" aria-roledescription="carousel" aria-label="MakaMusic records">
-            <div class="records-viewport">
-                <div class="records-track">
-                    <button class="record-card" type="button" aria-label="Juba record artwork">
-                        <img src="./maka/maka-juba.png" alt="Juba record artwork">
-                    </button>
-                    <button class="record-card is-active" type="button" aria-label="Maka SZN record artwork">
-                        <img src="./maka/makaszn.png" alt="Maka SZN record artwork">
-                    </button>
-                    <button class="record-card" type="button" aria-label="Scatter record artwork">
-                        <img src="./maka/maka-scatter.png" alt="Scatter record artwork">
-                    </button>
+
+    <section class="releases-section" id="releases" aria-labelledby="releases-title">
+        <div class="releases-inner">
+            <div class="release-list-panel">
+                <div class="releases-heading">
+                    <p class="releases-kicker">The numbers speak</p>
+                    <h2 id="releases-title">TOP RELEASES</h2>
+                </div>
+                <div class="release-table" role="table" aria-label="MakaMusic top releases by streams">
+                    <div class="release-table-head" role="row">
+                        <span role="columnheader">#</span>
+                        <span role="columnheader">Release</span>
+                        <span role="columnheader">Streams</span>
+                    </div>
+                    <div class="release-row" role="row"><span role="cell">01</span><span class="release-name" role="cell"><img src="./maka/maka-scatter.png" alt="">Scatter</span><span role="cell">40K+</span></div>
+                    <div class="release-row" role="row"><span role="cell">02</span><span class="release-name" role="cell"><img src="./maka/maka-juba.png" alt="">JUBA</span><span role="cell">35K+</span></div>
+                    <div class="release-row" role="row"><span role="cell">03</span><span class="release-name" role="cell"><img src="./maka/shayo.png" alt="">Shayo Riddim</span><span role="cell">15K+</span></div>
+                    <div class="release-row" role="row"><span role="cell">04</span><span class="release-name" role="cell"><img src="./maka/makaszn.png" alt="">Maka Maka</span><span role="cell">15K+</span></div>
+                    <div class="release-row" role="row"><span role="cell">05</span><span class="release-name" role="cell"><img src="./maka/wifrom.png" alt="">WHERE I COME FROM</span><span role="cell">10K+</span></div>
+                    <div class="release-row" role="row"><span role="cell">06</span><span class="release-name" role="cell"><img src="./maka/ikebe.png" alt="">Ikebe</span><span role="cell">10K+</span></div>
+                    <!-- <div class="release-row" role="row"><span role="cell">07</span><span class="release-name" role="cell"><img src="./maka/maka-6.png" alt="">Violence</span><span role="cell">7,039</span></div>
+                    <div class="release-row" role="row"><span role="cell">08</span><span class="release-name" role="cell"><img src="./maka/maka-7.png" alt="">Struggles And Pain</span><span role="cell">6,141</span></div>
+                    <div class="release-row" role="row"><span role="cell">09</span><span class="release-name" role="cell"><img src="./maka/makaszn.png" alt="">Maka Szn</span><span role="cell">5,246</span></div>
+                    <div class="release-row" role="row"><span role="cell">10</span><span class="release-name" role="cell"><img src="./maka/maka-2.png" alt="">ELEVATE</span><span role="cell">4,433</span></div> -->
                 </div>
             </div>
+            <article class="latest-album-feature" aria-labelledby="latest-album-title">
+                <p class="releases-kicker">Latest album</p>
+                <h2 id="latest-album-title">MAKA SZN</h2>
+                <div class="latest-album-art-wrap">
+                    <img src="./maka/makaszn.png" alt="Maka Szn album artwork">
+                </div>
+                <p class="latest-album-label">The latest EP from MakaMusic</p>
+            </article>
         </div>
     </section>
+
+    <section class="wave-message" aria-live="polite" aria-label="MakaMusic message">
+        <p class="hero-subtext"><span id="wave-message-text"></span></p>
+    </section>
+
+    
     <script>
         const siteNav = document.querySelector(".site-nav");
         const navToggle = document.querySelector(".nav-toggle");
@@ -126,22 +145,44 @@ Everyone will reckon with me when I become successful. I've been saying that sin
                 slides[activeSlide].classList.add("is-active");
             }, 10000);
 
-        const recordsViewport = document.querySelector(".records-viewport");
-        const recordsTrack = document.querySelector(".records-track");
-        const recordCards = [...recordsTrack.querySelectorAll(".record-card")];
-        const activeRecord = 1;
+        const waveMessageText = document.querySelector("#wave-message-text");
+        const waveMessages = [
+            "Making music not noise...",
+            "Making a new wave..",
+            "Ride this wave with me..",
+            "makamusic"
+        ];
 
-        function centerRecords() {
-            const cardWidth = recordCards[0].offsetWidth;
-            const trackStyle = getComputedStyle(recordsTrack);
-            const gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
-            const offset = recordsViewport.clientWidth / 2 - cardWidth / 2 - activeRecord * (cardWidth + gap);
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            waveMessageText.textContent = waveMessages[waveMessages.length - 1];
+        } else {
+            let messageIndex = 0;
+            let characterIndex = 0;
+            let isDeleting = false;
 
-            recordsTrack.style.transform = `translateX(${offset}px)`;
+            const typeWaveMessage = () => {
+                const currentMessage = waveMessages[messageIndex];
+                waveMessageText.textContent = isDeleting
+                    ? currentMessage.slice(0, characterIndex - 1)
+                    : currentMessage.slice(0, characterIndex + 1);
+                characterIndex += isDeleting ? -1 : 1;
+
+                let delay = isDeleting ? 45 : 75;
+                if (!isDeleting && characterIndex === currentMessage.length) {
+                    isDeleting = true;
+                    delay = 2000;
+                } else if (isDeleting && characterIndex === 0) {
+                    isDeleting = false;
+                    messageIndex = (messageIndex + 1) % waveMessages.length;
+                    delay = 350;
+                }
+
+                window.setTimeout(typeWaveMessage, delay);
+            };
+
+            typeWaveMessage();
         }
 
-        window.addEventListener("resize", centerRecords);
-        centerRecords();
     </script>
 </body>
 </html>
