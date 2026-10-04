@@ -513,6 +513,9 @@ body {
   text-wrap: balance;
 }
 @media (max-width: 640px) {
+  html {
+    font-size: 17px;
+  }
   .hero-title {
     width: 76vw;
     max-width: 76vw;
