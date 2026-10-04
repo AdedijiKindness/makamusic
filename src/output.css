@@ -326,6 +326,13 @@
 html, body {
   overflow-x: hidden;
 }
+html.page-loading body {
+  opacity: 0;
+}
+html.page-ready body {
+  opacity: 1;
+  transition: opacity 240ms ease;
+}
 body {
   margin: 0;
   background: linear-gradient(to bottom, #0a0a0a 0%, #1a0a05 50%, #0a0a0a 100%);
