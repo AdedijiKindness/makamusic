@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,9 +16,7 @@
             </button>
             <a class="nav-brand" href="./index.html">makamusic</a>
             <ul class="nav-links" id="main-menu">
-                <li><a class="nav-link" href="#home">Home</a></li>
-                <li><a class="nav-link" href="#about">About</a></li>
-                <li><a class="nav-link" href="#contact">Contact</a></li>
+                <li><a class="nav-link" href="#hero">OAU'S BIGGEST</a></li>
             </ul>
         </nav>
         <div class="header-slideshow" aria-hidden="true"></div>
@@ -77,19 +76,19 @@ Everyone will reckon with me when I become successful. I've been saying that sin
                         <span role="columnheader">Release</span>
                         <span role="columnheader">Streams</span>
                     </div>
-                    <div class="release-row" role="row"><span role="cell">01</span><span class="release-name" role="cell"><img src="./maka/maka-scatter.png" alt="">Scatter</span><span role="cell">40K+</span></div>
-                    <div class="release-row" role="row"><span role="cell">02</span><span class="release-name" role="cell"><img src="./maka/maka-juba.png" alt="">JUBA</span><span role="cell">35K+</span></div>
-                    <div class="release-row" role="row"><span role="cell">03</span><span class="release-name" role="cell"><img src="./maka/shayo.png" alt="">Shayo Riddim</span><span role="cell">15K+</span></div>
-                    <div class="release-row" role="row"><span role="cell">04</span><span class="release-name" role="cell"><img src="./maka/makaszn.png" alt="">Maka Maka</span><span role="cell">15K+</span></div>
-                    <div class="release-row" role="row"><span role="cell">05</span><span class="release-name" role="cell"><img src="./maka/wifrom.png" alt="">WHERE I COME FROM</span><span role="cell">10K+</span></div>
-                    <div class="release-row" role="row"><span role="cell">06</span><span class="release-name" role="cell"><img src="./maka/ikebe.png" alt="">Ikebe</span><span role="cell">10K+</span></div>
+                    <div class="release-row" role="row" data-aos="fade-right" data-aos-delay="0"><span role="cell">01</span><span class="release-name" role="cell"><img src="./maka/maka-scatter.png" alt="">Scatter</span><span role="cell">40K+</span></div>
+                    <div class="release-row" role="row" data-aos="fade-right" data-aos-delay="100"><span role="cell">02</span><span class="release-name" role="cell"><img src="./maka/maka-juba.png" alt="">JUBA</span><span role="cell">35K+</span></div>
+                    <div class="release-row" role="row" data-aos="fade-right" data-aos-delay="200"><span role="cell">03</span><span class="release-name" role="cell"><img src="./maka/shayo.png" alt="">Shayo Riddim</span><span role="cell">15K+</span></div>
+                    <div class="release-row" role="row" data-aos="fade-right" data-aos-delay="300"><span role="cell">04</span><span class="release-name" role="cell"><img src="./maka/makaszn.png" alt="">Maka Maka</span><span role="cell">15K+</span></div>
+                    <div class="release-row" role="row" data-aos="fade-right" data-aos-delay="400"><span role="cell">05</span><span class="release-name" role="cell"><img src="./maka/wifrom.png" alt="">WHERE I COME FROM</span><span role="cell">10K+</span></div>
+                    <div class="release-row" role="row" data-aos="fade-right" data-aos-delay="500"><span role="cell">06</span><span class="release-name" role="cell"><img src="./maka/ikebe.png" alt="">Ikebe</span><span role="cell">10K+</span></div>
                     <!-- <div class="release-row" role="row"><span role="cell">07</span><span class="release-name" role="cell"><img src="./maka/maka-6.png" alt="">Violence</span><span role="cell">7,039</span></div>
                     <div class="release-row" role="row"><span role="cell">08</span><span class="release-name" role="cell"><img src="./maka/maka-7.png" alt="">Struggles And Pain</span><span role="cell">6,141</span></div>
                     <div class="release-row" role="row"><span role="cell">09</span><span class="release-name" role="cell"><img src="./maka/makaszn.png" alt="">Maka Szn</span><span role="cell">5,246</span></div>
                     <div class="release-row" role="row"><span role="cell">10</span><span class="release-name" role="cell"><img src="./maka/maka-2.png" alt="">ELEVATE</span><span role="cell">4,433</span></div> -->
                 </div>
             </div>
-            <article class="latest-album-feature" aria-labelledby="latest-album-title">
+            <article class="latest-album-feature" aria-labelledby="latest-album-title" data-aos="fade-left" data-aos-delay="250">
                 <p class="releases-kicker">Latest album</p>
                 <h2 id="latest-album-title">MAKA SZN</h2>
                 <div class="latest-album-art-wrap">
@@ -105,7 +104,16 @@ Everyone will reckon with me when I become successful. I've been saying that sin
     </section>
 
     
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({
+            duration: 700,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 80,
+            disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        });
+
         const siteNav = document.querySelector(".site-nav");
         const navToggle = document.querySelector(".nav-toggle");
 
@@ -155,6 +163,7 @@ Everyone will reckon with me when I become successful. I've been saying that sin
 
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             waveMessageText.textContent = waveMessages[waveMessages.length - 1];
+            waveMessageText.classList.add("after-font");
         } else {
             let messageIndex = 0;
             let characterIndex = 0;
@@ -162,6 +171,7 @@ Everyone will reckon with me when I become successful. I've been saying that sin
 
             const typeWaveMessage = () => {
                 const currentMessage = waveMessages[messageIndex];
+                waveMessageText.classList.toggle("after-font", messageIndex === waveMessages.length - 1);
                 waveMessageText.textContent = isDeleting
                     ? currentMessage.slice(0, characterIndex - 1)
                     : currentMessage.slice(0, characterIndex + 1);

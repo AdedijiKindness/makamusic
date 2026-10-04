@@ -24,7 +24,7 @@
 }
 
 	.releases-section {
-		padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 6vw, 5rem);
+		padding: 2rem clamp(1.25rem, 6vw, 5rem);
 		background: #0b0b0b;
 		color: #f5e6c8;
 		font-family: "Inter", sans-serif;
@@ -153,6 +153,11 @@
 		text-transform: uppercase;
 	}
 
+html,
+body {
+	overflow-x: hidden;
+}
+
 body {
 	margin: 0;
 	background: linear-gradient(to bottom, #0a0a0a 0%, #1a0a05 50%, #0a0a0a 100%);
@@ -182,6 +187,7 @@ body {
 		#0a0a0a 100%
 	);
 	content: "";
+}
 
 	@media (max-width: 800px) {
 		.releases-inner {
@@ -234,7 +240,6 @@ body {
 			font-size: 0.62rem;
 		}
 	}
-}
 
 .header-slide {
 	position: absolute;
@@ -256,6 +261,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.header-slide.is-active {
 		transform: scale(1.08);
+	}
+}
+
+@media (max-width: 640px) {
+	.header-slide {
+		object-position: 74% center;
 	}
 }
 
@@ -359,10 +370,26 @@ body {
 	text-wrap: balance;
 }
 
+@media (max-width: 640px) {
+	.hero-title {
+		width: 76vw;
+		max-width: 76vw;
+		gap: 0.05em;
+		overflow: visible;
+		font-size: clamp(1.35rem, 6vw, 2.25rem);
+	}
+
+	.header-content .hero-subtext {
+		max-width: 50vw;
+		font-size: clamp(0.75rem, 3.8vw, 1rem);
+	}
+}
+
 .wave-message {
 	display: flex;
 	justify-content: center;
-	padding: clamp(4rem, 9vw, 7rem) 1.25rem;
+	margin-top: clamp(1.5rem, 3vw, 3rem);
+	padding: 1rem 1rem;
 	background: #0a0a0a;
 	text-align: center;
 }
@@ -370,14 +397,53 @@ body {
 .wave-message .hero-subtext {
 	max-width: none;
 	margin: 0;
+	font-family: "StephenType", cursive;
 }
 
 .wave-message .hero-subtext span {
+	position: relative;
 	display: inline-block;
+	padding: 1.25rem 2rem;
 	width: auto;
 	opacity: 1;
+	overflow: visible;
 	border-right: 2px solid rgba(255, 182, 74, 0.9);
 	animation: wave-cursor 0.8s step-end infinite;
+}
+
+.wave-message .hero-subtext span::before,
+.wave-message .hero-subtext span::after {
+	position: absolute;
+	inset: -0.75rem;
+	content: "";
+	pointer-events: none;
+	background-repeat: no-repeat;
+}
+
+.wave-message .hero-subtext span::before {
+	background-image:
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8)),
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8)),
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8)),
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8));
+	background-position: left top, left top, right bottom, right bottom;
+	background-size: 1.5rem 1px, 1px 1.5rem,
+                 1.5rem 1px, 1px 1.5rem;
+}
+
+.wave-message .hero-subtext span::after {
+	background-image:
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8)),
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8)),
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8)),
+		linear-gradient(rgba(245, 230, 200, 0.8), rgba(245, 230, 200, 0.8));
+	background-position: right top, right top, left bottom, left bottom;
+	background-size: 1.5rem 1px, 1px 1.5rem,
+                 1.5rem 1px, 1px 1.5rem;
+}
+
+.wave-message .hero-subtext span.after-font {
+	font-family: "After", sans-serif;
 }
 
 @keyframes wave-cursor {
@@ -599,13 +665,20 @@ body {
 
 @media (max-width: 600px) {
 	.social-dock {
-		gap: 0.75rem;
-		padding-inline: 0.75rem;
-		font-size: 0.55rem;
+		gap: 0.2rem;
+		width: calc(100% - 1.5rem);
+		min-height: 3.5rem;
+		padding: 0.5rem 0.4rem;
+		font-size: 0.42rem;
+		letter-spacing: 0.04em;
 	}
 
 	.social-dock a {
-		gap: 0.25rem;
+		flex: 1 1 0;
+		min-width: 0;
+		justify-content: center;
+		gap: 0.15rem;
+		white-space: nowrap;
 	}
 
 	.social-dock svg {
@@ -614,8 +687,8 @@ body {
 	}
 
 	.social-dock img {
-		width: 1rem;
-		height: 1rem;
+		width: 0.75rem;
+		height: 0.75rem;
 	}
 
 	.records-carousel {
@@ -684,22 +757,71 @@ body {
 }
 
 .about-image-wrap {
+	--about-border-beam-color: #ffd23f;
+	--about-border-beam-angle: 0deg;
+	position: relative;
 	justify-self: end;
 	grid-column: 1;
 	grid-row: 1;
 	width: min(100%, 18rem);
 	aspect-ratio: 1;
 	padding: 0.65rem;
-	border: 1px solid rgba(245, 230, 200, 0.45);
+	border: 1px solid rgba(245, 230, 200, 0.2);
 	border-radius: 50%;
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+@property --about-border-beam-angle {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
+.about-image-wrap::before {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	padding: 0.08rem;
+	border-radius: inherit;
+	background: conic-gradient(
+		from var(--about-border-beam-angle),
+		transparent 0 80%,
+		color-mix(in srgb, var(--about-border-beam-color) 55%, transparent) 90%,
+		var(--about-border-beam-color) 96%,
+		#fff6c7 98.5%,
+		transparent 99.5%
+	);
+	content: "";
+	filter: drop-shadow(0 0 0.1rem var(--about-border-beam-color));
+	pointer-events: none;
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	animation: about-border-beam-orbit 8s linear infinite;
 }
 
 .about-image {
+	position: relative;
+	z-index: 1;
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
 	object-fit: cover;
 	object-position: center 25%;
+}
+
+@keyframes about-border-beam-orbit {
+	to {
+		--about-border-beam-angle: 360deg;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.about-image-wrap::before {
+		animation-duration: 0.01ms;
+		animation-iteration-count: 1;
+	}
 }
 
 @media (max-width: 700px) {
