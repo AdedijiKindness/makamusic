@@ -309,6 +309,7 @@
   padding: 0.55rem;
   border: 1px solid rgb(245 230 200 / 0.24);
   background: rgb(245 230 200 / 0.04);
+  animation: latest-album-border-pulse 2.8s ease-in-out infinite;
 }
 .latest-album-art-wrap img {
   display: block;
@@ -322,6 +323,16 @@
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+@keyframes latest-album-border-pulse {
+  0%,	100% {
+    border-color: rgb(245 230 200 / 0.24);
+    box-shadow: 0 0 0 rgb(255 210 63 / 0);
+  }
+  50% {
+    border-color: rgb(255 210 63 / 0.82);
+    box-shadow: 0 0 1rem rgb(255 210 63 / 0.18);
+  }
 }
 html, body {
   overflow-x: hidden;
@@ -874,6 +885,9 @@ body {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .latest-album-art-wrap {
+    animation: none;
+  }
   .about-image-wrap::before {
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
